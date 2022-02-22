@@ -1,0 +1,13 @@
+Type of Error: NameError
+Reason for error: Uninitialized constant DockingStation
+
+
+
+File Path: /Users/henryferrari/.rvm/rubies/ruby-3.0.0/bin/irb:23:in
+
+Error occurs on line 1 of irb and it further pinpoints the error to the irb file line 23
+
+Error is caused by the DockingStation class not existing. 
+
+To solve this, First create a DockingStation Class then assign the docking_station variable as an instance of that class
+
