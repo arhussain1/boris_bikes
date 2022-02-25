@@ -12,11 +12,6 @@ describe DockingStation do
       expect { subject.release_bike }.to raise_error("There are no bikes available")
     end
 
-    it ":return_bike should raise and error when the docking station is empty" do
-      subject.return_bike(Bike.new)
-      expect { subject.return_bike(Bike.new) }.to raise_error("There is already a bike here")
-    end
-
     it "test if output of Bike instance responds to working? method" do
       expect(Bike.new).to respond_to(:working?)
     end
@@ -26,12 +21,26 @@ describe DockingStation do
       expect(subject.return_bike(bike)).to eq(bike)
     end
 
-    it { is_expected.to respond_to :bike }
-
-    it "" do
-      bike = Bike.new
-      subject.return_bike(bike)
-      expect(subject.bike).to eq(bike)
+    it ":release bike releases a bike and the array decreases by one" do
+      returned_bike = subject.return_bike(Bike.new)
+      expect(subject.release_bike).to eq(returned_bike)
     end
+
+    it ":return_bike returns the same bike is was given" do
+      bike = Bike.new
+      expect(subject.return_bike(bike)).to eq(bike)
+    end
+
+    it "raises an error when capacity is full and :return_bike is called" do
+      20.times{subject.return_bike(Bike.new)}
+      expect {subject.return_bike(Bike.new)}.to raise_error("Capacity is full")
+    end
+
+    it ":return_bike should not raise an error when capacity is less than 20" do
+      19.times{subject.return_bike(Bike.new)}
+      expect {subject.return_bike(Bike.new)}.to_not raise_error
+    end
+
+
 
 end
