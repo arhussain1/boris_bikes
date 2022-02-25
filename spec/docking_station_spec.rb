@@ -3,8 +3,10 @@ require "docking_station"
 describe DockingStation do 
 
     it { is_expected.to respond_to :release_bike }
-    it "returns a bike instance" do
+    it "returns only one bike instance" do
+      subject.return_bike(Bike.new, true)
       subject.return_bike(Bike.new)
+      subject.return_bike(Bike.new, true)
       expect(subject.release_bike).to be_instance_of(Bike)
     end
 
@@ -72,6 +74,5 @@ describe DockingStation do
       subject.return_bike(Bike.new, true)
       expect { subject.release_bike }.to raise_error("There are no bikes available")
     end
-
 
 end

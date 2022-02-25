@@ -37,7 +37,7 @@ class DockingStation
   end
 
   def get_bike(index)
-    @bikes[index]
+    @bikes.delete_at(index)
   end
 
 end
