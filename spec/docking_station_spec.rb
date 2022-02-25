@@ -26,11 +26,6 @@ describe DockingStation do
       expect(subject.release_bike).to eq(returned_bike)
     end
 
-    it ":return_bike returns the same bike is was given" do
-      bike = Bike.new
-      expect(subject.return_bike(bike)).to eq(bike)
-    end
-
     it "raises an error when capacity is full and :return_bike is called" do
       20.times{subject.return_bike(Bike.new)}
       expect {subject.return_bike(Bike.new)}.to raise_error("Capacity is full")
@@ -61,4 +56,15 @@ describe DockingStation do
       end.to_not raise_error
     end
 
+    it ":return_bike(working=false) should return a bike that is not working" do
+      bike = Bike.new
+      broken_bike = subject.return_bike(bike, false)
+      expect(broken_bike.working?).to eq(false)
+    end
+
+    it ":return_bike(working=true) should return a bike that is working" do
+      bike = Bike.new
+      working_bike = subject.return_bike(bike)
+      expect(working_bike.working?).to eq(true)
+    end
 end
