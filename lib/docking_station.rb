@@ -7,14 +7,22 @@ class DockingStation
   end
 
   def release_bike
-    return @bikes.pop if @bikes.length > 0
+    return @bikes.pop unless empty?
     raise Exception.new "There are no bikes available"
   end
 
   def return_bike(bike)
-    raise Exception.new "Capacity is full" if @bikes.length >= @capacity
+    raise Exception.new "Capacity is full" if full?
     @bikes.push(bike)
     return bike
   end
+  private
+  def empty?
+    @bikes.length == 0
+  end
+  def full?
+    @bikes.length == @capacity
+  end
+
 
 end
