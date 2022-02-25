@@ -56,13 +56,13 @@ describe DockingStation do
       end.to_not raise_error
     end
 
-    it ":return_bike(working=false) should return a bike that is not working" do
+    it ":return_bike(is_broken=true) should return a bike that is not working" do
       bike = Bike.new
-      broken_bike = subject.return_bike(bike, false)
+      broken_bike = subject.return_bike(bike, true)
       expect(broken_bike.working?).to eq(false)
     end
 
-    it ":return_bike(working=true) should return a bike that is working" do
+    it ":return_bike(is_broken=false) should return a bike that is working" do
       bike = Bike.new
       working_bike = subject.return_bike(bike)
       expect(working_bike.working?).to eq(true)

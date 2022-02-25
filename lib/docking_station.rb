@@ -14,12 +14,10 @@ class DockingStation
     raise Exception.new "There are no bikes available"
   end
 
-  def return_bike(bike, working=true)
+  def return_bike(bike, is_broken=false)
     raise Exception.new "Capacity is full" if full?
     @bikes.push(bike)
-
-    working ? bike.working : bike.broken
-
+    bike.maintenance_flag = is_broken
     return bike
   end
 

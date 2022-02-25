@@ -1,18 +1,12 @@
 class Bike
+  attr_writer :maintenance_flag
 
   def initialize
-    @working = true
+    @maintenance_flag = false
   end
-
+    
   def working?
-    @working
+    !@maintenance_flag
   end
 
-  def working
-    @working = true
-  end
-
-  def broken
-    @working = false
-  end
 end
