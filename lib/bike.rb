@@ -1,5 +1,5 @@
 class Bike
-  attr_writer :maintenance_flag
+  attr_accessor :maintenance_flag
 
   def initialize
     @maintenance_flag = false

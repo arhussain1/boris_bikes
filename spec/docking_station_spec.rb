@@ -67,4 +67,11 @@ describe DockingStation do
       working_bike = subject.return_bike(bike)
       expect(working_bike.working?).to eq(true)
     end
+
+    it "Only allows release_bike to output a bike if its working" do
+      subject.return_bike(Bike.new, true)
+      expect { subject.release_bike }.to raise_error("There are no bikes available")
+    end
+
+
 end

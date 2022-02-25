@@ -10,8 +10,9 @@ class DockingStation
   end
 
   def release_bike
-    return @bikes.pop unless empty?
-    raise Exception.new "There are no bikes available"
+    bike_index = working_bike_index
+    raise Exception.new "There are no bikes available" unless bike_index
+    get_bike(bike_index)
   end
 
   def return_bike(bike, is_broken=false)
@@ -31,5 +32,12 @@ class DockingStation
     @bikes.length == @capacity
   end
 
+  def working_bike_index
+    @bikes.index {|bike| bike.maintenance_flag == false}
+  end
+
+  def get_bike(index)
+    @bikes[index]
+  end
 
 end
