@@ -2,10 +2,11 @@ require_relative 'bike'
 
 class DockingStation
 
-  DEFAULT_CAPACITY = 20
+  DEFAULT_CAPACITY = 19
 
-  def initialize
+  def initialize(capacity = DEFAULT_CAPACITY)
     @bikes = []
+    @capacity = capacity
   end
 
   def release_bike
@@ -23,7 +24,7 @@ class DockingStation
     @bikes.length == 0
   end
   def full?
-    @bikes.length == DEFAULT_CAPACITY
+    @bikes.length == @capacity
   end
 
 
